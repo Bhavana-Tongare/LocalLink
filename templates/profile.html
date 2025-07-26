@@ -1,0 +1,94 @@
+<!-- templates/profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center py-10">
+
+  <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-8 space-y-8">
+
+    <!-- Top Profile Info -->
+    <div class="flex items-center space-x-6">
+      <img src="{{ url_for('static', filename='images/profile.png') }}"
+           alt="Profile Image"
+           class="w-24 h-24 rounded-full object-cover border-4 border-indigo-500">
+
+      <div class="space-y-1">
+        <h2 class="text-2xl font-bold text-indigo-700">{{ session['name'] }}</h2>
+        <p class="text-sm text-gray-600 capitalize">{{ session['user'] }}</p>
+        <p class="text-sm text-gray-500">{{ session['email'] }}</p>
+        <p class="text-sm text-gray-500">📞 {{ session['phone'] }}</p>
+        {% if session.get('location') %}
+        <p class="text-sm text-gray-500">📍 {{ session['location'] }}</p>
+        {% endif %}
+        <p class="text-sm text-gray-400">Joined: {{ session.get('joined_date', 'N/A') }}</p>
+      </div>
+    </div>
+
+    <!-- Account Actions -->
+    <div class="flex flex-wrap gap-4">
+      <a href="{{ url_for('edit_profile') }}" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+        Edit Profile
+      </a>
+      <a href="{{ url_for('update_password') }}" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600">
+        Update Password
+      </a>
+      <a href="{{ url_for('logout') }}" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 ml-auto">
+        Logout
+      </a>
+    </div>
+
+    <!-- My Bids (Only for Vendor) -->
+    {% if session['user'] == 'vendor' %}
+    <div>
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">📋 My Bids</h3>
+      {% if bids %}
+        <div class="overflow-x-auto">
+          <table class="w-full table-auto text-sm text-left border">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="p-3 border">Item Name</th>
+                <th class="p-3 border">Bid Price (₹)</th>
+                <th class="p-3 border">Status</th>
+                <th class="p-3 border">Supplier Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for bid in bids %}
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 border">{{ bid.item_name }}</td>
+                <td class="p-3 border">{{ bid.bid_price }}</td>
+                <td class="p-3 border">
+                  {% if bid.status == 'Accepted' %}
+                    <span class="text-green-600 font-semibold">Accepted</span>
+                  {% elif bid.status == 'Rejected' %}
+                    <span class="text-red-600 font-semibold">Rejected</span>
+                  {% else %}
+                    <span class="text-yellow-600 font-semibold">Pending</span>
+                  {% endif %}
+                </td>
+                <td class="p-3 border">
+                  {% if bid.status == 'Accepted' %}
+                    {{ bid.supplier_contact }}
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p class="text-gray-500">You haven't placed any bids yet.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+</body>
+</html>
