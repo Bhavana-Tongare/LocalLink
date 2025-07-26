@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leftover Stock Bidding Marketplace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#f7fafc]">
+
+  <!-- ✅ HEADER / NAVBAR -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold text-blue-600">LocalLink</div>
+      <nav class="hidden md:flex gap-6 text-[#4A5568] font-medium">
+        <a href="#" class="hover:text-blue-600">Home</a>
+        <a href="#" class="hover:text-blue-600">About</a>
+        <a href="#" class="hover:text-blue-600">Features</a>
+        <a href="#" class="hover:text-blue-600">About Us</a>
+      </nav>
+      <div class="flex gap-4">
+        <a href="#" class="text-blue-600 border border-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50">Login</a>
+        <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700">Profile</a>
+      </div>
+    </div>
+  </header>
+
+<body class="bg-[#f7fafc] font-inter">
+  <!-- Landing Section -->
+  <section class="bg-white py-20 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-10">
+      <div class="text-center md:text-left">
+        <h1 class="text-4xl font-bold text-[#2D3748] mb-4">Welcome to LocalLink</h1>
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Less Waste. More Profit. Smarter Sourcing</h2>
+        <p class="text-[#4A5568] max-w-xl mb-6">Reduce food waste and get raw materials at the best price through real-time bidding and discovery of local suppliers.</p>
+        <div class="space-x-4">
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold">Login as Vendor</a>
+          <a href="#" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold">Login as Supplier</a>
+          <a href="#" class="bg-gray-200 hover:bg-gray-300 px-6 py-3 rounded-xl font-semibold">Register</a>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <img src="{{ url_for('static', filename='donate1.jpg') }}" alt="Food donation" class="w-full h-auto rounded-2xl shadow-md" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem & Solution Section -->
+  <section class="py-16 bg-[#edf2f7]">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h2 class="text-2xl font-semibold text-[#2D3748] mb-2">Problem</h2>
+        <p class="text-[#4A5568]">Daily food waste due to unsold stock and lack of real-time connection between suppliers and vendors.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h2 class="text-2xl font-semibold text-[#2D3748] mb-2">Solution</h2>
+        <p class="text-[#4A5568]">Live bidding platform and hyperlocal supplier map that enables vendors to buy cheaper and reduce waste.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center text-[#2D3748] mb-12">Core Features</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Supplier Card -->
+      <a href="{{ url_for('supplier_dashboard') }}" class="block bg-white p-6 rounded-2xl shadow hover:shadow-md transition hover:scale-105 duration-300">
+        <h3 class="text-xl font-semibold text-blue-600 mb-2">Supplier Dashboard</h3>
+        <p class="text-[#4A5568]">Upload leftover stock, manage bids, and arrange pickups efficiently.</p>
+      </a>
+
+      <!-- Vendor Card -->
+      <a href="{{ url_for('vendor_dashboard') }}" class="block bg-white p-6 rounded-2xl shadow hover:shadow-md transition hover:scale-105 duration-300">
+        <h3 class="text-xl font-semibold text-green-600 mb-2">Vendor Dashboard</h3>
+        <p class="text-[#4A5568]">Bid for stock in real-time and discover reliable suppliers nearby.</p>
+      </a>
+
+      <!-- Trust System Card -->
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h3 class="text-xl font-semibold text-yellow-600 mb-2">Trust & Credit System</h3>
+        <p class="text-[#4A5568]">Ratings, credit behavior, and transparent trust scores for all users.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+  <!-- Bonus Features -->
+  <section class="bg-[#fefcbf] py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-[#2D3748] text-center mb-8">Bonus Features</h2>
+      <ul class="list-disc list-inside text-[#4A5568] text-lg space-y-3">
+        <li>Chat or call integration between vendor and supplier</li>
+        <li>Leaderboard of top-rated vendors and suppliers</li>
+        <li>Smart notifications: “Bid ending soon”, “You won the bid!”</li>
+        <li>Analytics for daily trends and performance tracking</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-16 py-6 text-center text-[#718096]">
+    &copy; 2025 Leftover Stock Bidding. All rights reserved.
+  </footer>
+</body>
+
+</html>
